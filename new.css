@@ -1,0 +1,22 @@
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css);
+@import url(https://fonts.googleapis.com/css?family=Josefin+Sans:400,600,700);
+body {
+    font: normal 1em 'Josefin Sans';
+    background: #000000;
+    color: #000000;
+    transition: all 0.8s cubic-bezier(0.44, 1.13, 0.58, 1);
+}
+.quote-box {
+    border-radius: 3px;
+    position: center;
+    margin: 15% auto auto auto;
+    width: 40%;
+    padding: 50px 50px;
+    background-color: #fff;
+    overflow: hidden;
+}
+#quote {
+    overflow: hidden;
+    margin-bottom: 20px;
+    opacity: 1;
+}
