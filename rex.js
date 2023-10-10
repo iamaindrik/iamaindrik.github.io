@@ -50,7 +50,7 @@ function next3() {
 }
 
 function prev() {
-  var url = 'rexhome.html';
+  var url = 'index.html';
   window.open(url);
 }
 
