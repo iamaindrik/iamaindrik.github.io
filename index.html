@@ -651,26 +651,31 @@
 
                 <div class="contact-content">
                     <form action="https://formsubmit.co/birdaindrik@gmail.com" class="contact-form" method="post">
+                                  <!-- Honeypot -->
+          <input type="text" name="_honey" style="display: none;">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_next" value="https://iamaindrik.github.io/submit.html">
+                        
                         <div class="input-container">
-                            <input type="text" class="input">
+                            <input type="text" class="input" name="subject">
                             <label for="">Subject</label>
                             <span>Subject</span>
                         </div>
     
                         <div class="input-container">
-                            <input type="email" class="input">
+                            <input type="email" class="input" name="email">
                             <label for="">Email</label>
                             <span>Email</span>
                         </div>
     
                         <div class="input-container">
-                            <input type="tel" class="input">
+                            <input type="tel" class="input" name="phone">
                             <label for="">Phone</label>
                             <span>Phone</span>
                         </div>
     
                         <div class="input-container textarea">
-                            <textarea name="" id="" class="input"></textarea>
+                            <textarea name="" id="" class="input" name="message"></textarea>
                             <label for="">Message</label>
                             <span>Message</span>
                         </div>
