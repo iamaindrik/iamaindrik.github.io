@@ -1,739 +1,814 @@
 <!-- Author : Aindrik Sarkar
-Copyright © 2025 Aindrik. -->
+Copyright © 2026 Aindrik. -->
 <!-- Domain name : https://iamaindrik.github.io/ -->
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aindrik's</title>
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-      <link
-    rel="icon"
-    href=
-"https://raw.githubusercontent.com/iamaindrik/iamaindrik.github.io/refs/heads/main/logo.jpg"
-    type="image/x-icon"
-/>     
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aindrik Sarkar — AI & Python Developer</title>
+<meta name="description" content="Aindrik Sarkar — AI & Python Developer building end-to-end ML products and full-stack web apps. AgriTech, CNNs, NLP, FastAPI, React.">
 
-    <link rel="stylesheet" href="style.css">
+<link rel="icon" href="https://raw.githubusercontent.com/iamaindrik/iamaindrik.github.io/refs/heads/main/logo.jpg" type="image/x-icon">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          navy:    '#141B2C',
+          navy2:   '#1D2740',
+          paper:   '#F3EFE4',
+          ink:     '#141B2C',
+          mustard: '#F0A93A',
+          teal:    '#3EAE9A',
+          brick:   '#C4472C',
+        },
+        fontFamily: {
+          display: ['"Space Grotesk"', 'sans-serif'],
+          body: ['"Work Sans"', 'sans-serif'],
+          mono: ['"IBM Plex Mono"', 'monospace'],
+        },
+        borderRadius: { none:'0px' }
+      }
+    }
+  }
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { background:#F3EFE4; }
+  * { border-radius: 0 !important; }
+
+  ::selection { background:#F0A93A; color:#141B2C; }
+  ::-webkit-scrollbar { width:10px; }
+  ::-webkit-scrollbar-track { background:#F3EFE4; }
+  ::-webkit-scrollbar-thumb { background:#141B2C; }
+
+  /* corner brackets — blueprint / spec-sheet motif */
+  .bracketed { position:relative; }
+  .bracketed::before, .bracketed::after,
+  .bracketed .bk-tr, .bracketed .bk-bl { content:''; position:absolute; width:14px; height:14px; border-color:#141B2C; }
+  .bracketed::before { top:-1px; left:-1px; border-top:2px solid; border-left:2px solid; }
+  .bracketed::after  { bottom:-1px; right:-1px; border-bottom:2px solid; border-right:2px solid; }
+  .bracketed .bk-tr { top:-1px; right:-1px; border-top:2px solid; border-right:2px solid; }
+  .bracketed .bk-bl { bottom:-1px; left:-1px; border-bottom:2px solid; border-left:2px solid; }
+
+  .stamp { transform: rotate(-6deg); }
+
+  .hatch { background-image: repeating-linear-gradient(45deg, rgba(20,27,44,0.06) 0 1px, transparent 1px 9px); }
+
+  .cursor { display:inline-block; width:8px; height:1em; background:#F0A93A; vertical-align:text-bottom; margin-left:2px; animation: blink 1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity:0; } }
+
+  .reveal { opacity:0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.in { opacity:1; transform:none; }
+
+  .bar-fill { width:0%; transition: width 1s cubic-bezier(.22,.9,.3,1); }
+
+  .marquee-track { animation: scroll-left 26s linear infinite; }
+  .marquee-track:hover { animation-play-state: paused; }
+  @keyframes scroll-left { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  .nav-link.active { color:#F0A93A; }
+
+  .skills-tab.active, .filter-btn.active { background:#141B2C; color:#F3EFE4; }
+
+  .modal { visibility:hidden; opacity:0; transition: opacity .2s ease; }
+  .modal.open { visibility:visible; opacity:1; }
+  .modal.open .modal-panel { transform: translateY(0); }
+  .modal-panel { transform: translateY(14px); transition: transform .25s ease; }
+
+  .input-wrap.focused .float-label,
+  .input-wrap.filled .float-label { transform: translateY(-1.35rem) scale(.75); color:#141B2C; font-weight:600; }
+  .float-label { transition: all .15s ease; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal, .bar-fill, .marquee-track, .cursor { animation:none!important; transition:none!important; opacity:1!important; transform:none!important; }
+  }
+</style>
 </head>
-<body>
-    <div class="nav-toggle" id="nav-toggle">
-        <i class="uil uil-bars"></i>
+
+<body class="font-body bg-paper text-ink antialiased">
+
+<!-- ============ MOBILE TOPBAR ============ -->
+<div class="lg:hidden fixed top-0 inset-x-0 z-40 flex items-center justify-between px-5 py-4 bg-paper border-b-2 border-ink">
+  <a href="#home" class="font-display text-lg font-bold tracking-tight">AINDRIK / 01</a>
+  <button id="nav-toggle" aria-label="Open menu" class="w-10 h-10 grid place-items-center border-2 border-ink">
+    <i class="uil uil-bars text-xl"></i>
+  </button>
+</div>
+
+<!-- ============ SIDEBAR ============ -->
+<aside id="sidebar" class="fixed z-50 top-0 -left-full lg:left-0 h-screen w-72 bg-navy text-paper border-r-2 border-ink flex flex-col justify-between px-6 py-8 transition-all duration-300">
+  <div>
+    <div class="flex items-center justify-between mb-10">
+      <a href="#home" class="font-display text-xl font-bold tracking-tight">A. SARKAR</a>
+      <button id="nav-close" class="lg:hidden text-paper/70"><i class="uil uil-times text-xl"></i></button>
     </div>
 
-    <aside class="sidebar" id="sidebar">
-        <nav class="nav">
-            <div class="nav-logo">
-                <a href="#" class="nav-logo-text">AS</a>
-            </div>
+    <p class="font-mono text-[11px] text-mustard mb-8 tracking-widest">FIELD REPORT — DEV PROFILE</p>
 
-            <div class="nav-menu">
-                <div class="menu">
-                    <ul class="nav-list">
-                        <li class="nav-item">
-                            <a href="#home" class="nav-link active-link">Home</a>
-                        </li>
+    <nav>
+      <ul class="space-y-1 font-mono text-sm">
+        <li><a href="#home" class="nav-link active flex items-center gap-3 py-2.5 border-l-2 border-transparent pl-3 text-paper/60 hover:text-paper transition-colors" data-section="home"><span class="border border-paper/30 text-paper/40 text-[10px] w-5 h-5 grid place-items-center">01</span>Home</a></li>
+        <li><a href="#about" class="nav-link flex items-center gap-3 py-2.5 border-l-2 border-transparent pl-3 text-paper/60 hover:text-paper transition-colors" data-section="about"><span class="border border-paper/30 text-paper/40 text-[10px] w-5 h-5 grid place-items-center">02</span>About</a></li>
+        <li><a href="#journey" class="nav-link flex items-center gap-3 py-2.5 border-l-2 border-transparent pl-3 text-paper/60 hover:text-paper transition-colors" data-section="journey"><span class="border border-paper/30 text-paper/40 text-[10px] w-5 h-5 grid place-items-center">03</span>Journey</a></li>
+        <li><a href="#skills" class="nav-link flex items-center gap-3 py-2.5 border-l-2 border-transparent pl-3 text-paper/60 hover:text-paper transition-colors" data-section="skills"><span class="border border-paper/30 text-paper/40 text-[10px] w-5 h-5 grid place-items-center">04</span>Skills</a></li>
+        <li><a href="#work" class="nav-link flex items-center gap-3 py-2.5 border-l-2 border-transparent pl-3 text-paper/60 hover:text-paper transition-colors" data-section="work"><span class="border border-paper/30 text-paper/40 text-[10px] w-5 h-5 grid place-items-center">05</span>Work</a></li>
+        <li><a href="#services" class="nav-link flex items-center gap-3 py-2.5 border-l-2 border-transparent pl-3 text-paper/60 hover:text-paper transition-colors" data-section="services"><span class="border border-paper/30 text-paper/40 text-[10px] w-5 h-5 grid place-items-center">06</span>Services</a></li>
+        <li><a href="#contact" class="nav-link flex items-center gap-3 py-2.5 border-l-2 border-transparent pl-3 text-paper/60 hover:text-paper transition-colors" data-section="contact"><span class="border border-paper/30 text-paper/40 text-[10px] w-5 h-5 grid place-items-center">07</span>Contact</a></li>
+      </ul>
+    </nav>
+  </div>
 
-                        <li class="nav-item">
-                            <a href="#about" class="nav-link">About</a>
-                        </li>
+  <div>
+    <div class="border-t border-paper/20 pt-5 flex items-center gap-4 text-lg text-paper/60">
+      <a href="https://www.github.com/iamaindrik" target="_blank" class="hover:text-mustard transition-colors"><i class="uil uil-github"></i></a>
+      <a href="https://www.linkedin.com/in/aindriksarkar/" target="_blank" class="hover:text-mustard transition-colors"><i class="uil uil-linkedin"></i></a>
+      <a href="https://www.instagram.com/aindrik.in" target="_blank" class="hover:text-mustard transition-colors"><i class="uil uil-instagram"></i></a>
+      <a href="https://www.x.com/tw_aindrik" target="_blank" class="hover:text-mustard transition-colors"><i class="uil uil-twitter"></i></a>
+    </div>
+    <p class="font-mono text-[10px] text-paper/40 mt-4">AHMEDABAD, IN · LAT 23.02 LON 72.57</p>
+  </div>
+</aside>
+<div id="sidebar-overlay" class="fixed inset-0 bg-black/50 z-40 hidden lg:hidden"></div>
 
-                        <li class="nav-item">
-                            <a href="#skills" class="nav-link">Skills</a>
-                        </li>
+<!-- ============ MAIN ============ -->
+<main class="lg:pl-72 pt-20 lg:pt-0">
 
-                        <li class="nav-item">
-                            <a href="#work" class="nav-link">Work</a>
-                        </li>
+  <!-- ================= HOME ================= -->
+  <section id="home" class="min-h-screen flex items-center px-6 sm:px-10 lg:px-16 py-16 border-b-2 border-ink">
+    <div class="max-w-6xl mx-auto grid lg:grid-cols-[1.15fr_0.85fr] gap-12 lg:gap-16 items-center w-full">
 
-                        <li class="nav-item">
-                            <a href="#services" class="nav-link">Services</a>
-                        </li>
+      <div class="reveal">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="font-mono text-xs border-2 border-ink px-2 py-1">STATUS: OPEN</span>
+          <span class="font-mono text-xs text-ink/60">Rev. 2026.03</span>
+        </div>
+        <h1 class="font-display font-bold text-[2.75rem] sm:text-7xl leading-[0.95] tracking-tight uppercase">
+          Aindrik<br>Sarkar
+        </h1>
+        <p class="font-mono text-sm sm:text-base mt-5 border-l-2 border-mustard pl-4 max-w-lg">
+          AI &amp; Python Developer — training models that ship, not just notebooks that run.
+        </p>
+        <p class="text-ink/70 text-base leading-relaxed mt-6 max-w-lg">
+          I build end-to-end ML systems and full-stack web apps: CNNs that diagnose crop disease, and the FastAPI, React and OTP-secured backends that carry them to real farmers.
+        </p>
 
-                        <li class="nav-item">
-                            <a href="#contact" class="nav-link">Contact</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="btn-share">
-                <i class="uil uil-share-alt social-share"></i>
-            </div>
-
-            <div class="nav-close" id="nav-close">
-                <i class="uil uil-times"></i>
-            </div>
-        </nav>
-    </aside>
-
-    <main class="main">
-        <section class="home" id="home">
-            <div class="home-container container grid">
-                <div class="home-social">
-                    <span class="home-social-follow">Follow Me</span>
-                    <div class="home-social-links">
-                        <a href="https://www.github.com/iamaindrik" target="_blank" class="home-social-link">
-                            <i class="uil uil-github"></i>
-                        </a>
-
-                        <a href="https://www.instagram.com/aindrik.in" target="_blank" class="home-social-link">
-                            <i class="uil uil-instagram"></i>
-                        </a>
-
-                        <a href="https://www.x.com/tw_aindrik" target="_blank" class="home-social-link">
-                            <i class="uil uil-twitter"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <img src="https://i.postimg.cc/90FZhvfV/astronaut-ai-1182023.png" alt="" class="home-img">
-
-            <div class="home-data">
-                <h1 class="home-title">Hi, I'm Aindrik</h1>
-                <h3 class="home-subtitle">Python Developer</h3>
-                <p class="home-description">I build efficient and scalable solutions using Python for web development, automation, and AI.</p>
-                <a href="finalresume.pdf" class="button" download>
-                    <i class="uil uil-user button-icon"></i>
-                    Download CV/Resume
-                </a>
-            </div>
-
-            <div class="my-info">
-                <div class="info-item">
-                    <i class="uil uil-linkedin info-icon"></i>
-
-                    <div>
-                        <h3 class="info-title">Linkedin</h3>
-                        <span class="info-subtitle">Aindrik Sarkar</span>
-                    </div>
-                </div>
-
-                <div class="info-item">
-                    <i class="uil uil-whatsapp info-icon"></i>
-
-                    <div>
-                        <h3 class="info-title">Whatsapp</h3>
-                        <span class="info-subtitle">+91 8609294784</span>
-                    </div>
-                </div>
-
-                <div class="info-item">
-                    <i class="uil uil-envelope-edit info-icon"></i>
-
-                    <div>
-                        <h3 class="info-title">Email</h3>
-                        <span class="info-subtitle">iamaindrik@gmail.com</span>
-                    </div>
-                </div>
-            </div>
+        <div class="flex flex-wrap items-center gap-4 mt-9">
+          <a href="resume.pdf" download class="inline-flex items-center gap-2 bg-ink text-paper font-semibold px-6 py-3.5 border-2 border-ink hover:bg-mustard hover:text-ink hover:border-ink transition-colors">
+            <i class="uil uil-import"></i> Download Résumé
+          </a>
+          <a href="#contact" class="inline-flex items-center gap-2 border-2 border-ink px-6 py-3.5 hover:bg-ink hover:text-paper transition-colors">
+            Let's talk <i class="uil uil-arrow-right"></i>
+          </a>
         </div>
 
-            
-        </section>
+        <div class="grid grid-cols-3 gap-0 mt-12 max-w-md border-2 border-ink divide-x-2 divide-ink">
+          <div class="p-4">
+            <p class="font-display text-2xl font-bold">2</p>
+            <p class="font-mono text-[10px] text-ink/60 mt-1">INTERNSHIPS</p>
+          </div>
+          <div class="p-4">
+            <p class="font-display text-2xl font-bold">4+</p>
+            <p class="font-mono text-[10px] text-ink/60 mt-1">PROJECTS SHIPPED</p>
+          </div>
+          <div class="p-4">
+            <p class="font-display text-2xl font-bold">'26</p>
+            <p class="font-mono text-[10px] text-ink/60 mt-1">B.TECH GRAD</p>
+          </div>
+        </div>
+      </div>
 
-        <section class="about section" id="about">
-            <h2 class="section-title" data-heading="My Intro">About me</h2>
+      <!-- Signature element: field-log console -->
+      <div class="reveal bracketed p-1">
+        <span class="bk-tr"></span><span class="bk-bl"></span>
+        <div class="bg-navy text-paper border-2 border-ink overflow-hidden">
+          <div class="flex items-center justify-between px-4 py-2.5 border-b-2 border-ink bg-navy2">
+            <span class="font-mono text-[11px] text-mustard tracking-widest">MODEL_LOG.TXT</span>
+            <span class="font-mono text-[11px] text-paper/40">organic-pie/inference</span>
+          </div>
+          <div id="terminal" class="p-6 font-mono text-[12.5px] sm:text-sm leading-relaxed min-h-[300px]"></div>
+        </div>
+      </div>
 
-            <div class="about-container container grid">
-                <img src="https://i.ibb.co/V0QCdWv4/image.png" alt="" class="about-img">
+    </div>
+  </section>
 
-                <div class="about-data">
-                    <h3 class="about-heading">Hi, I'm Aindrik Sarkar, based in India</h3>
-                    <p class="about-description">I'm a Python Developer, AI/ML enthusiast, working on building interactive web applications while exploring intelligent solutions using machine learning.</p>
+  <!-- Tech marquee -->
+  <div class="border-b-2 border-ink bg-ink overflow-hidden py-3.5">
+    <div class="marquee-track flex gap-8 whitespace-nowrap font-mono text-xs text-paper/80 w-max uppercase tracking-wider">
+      <span class="flex gap-8">
+        <span>Python</span><span class="text-mustard">/</span><span>TensorFlow</span><span class="text-mustard">/</span><span>FastAPI</span><span class="text-mustard">/</span><span>React + Vite</span><span class="text-mustard">/</span><span>MongoDB</span><span class="text-mustard">/</span><span>Scikit-Learn</span><span class="text-mustard">/</span><span>Flask</span><span class="text-mustard">/</span><span>NLP · LLMs</span><span class="text-mustard">/</span><span>Tailwind CSS</span><span class="text-mustard">/</span>
+      </span>
+      <span class="flex gap-8" aria-hidden="true">
+        <span>Python</span><span class="text-mustard">/</span><span>TensorFlow</span><span class="text-mustard">/</span><span>FastAPI</span><span class="text-mustard">/</span><span>React + Vite</span><span class="text-mustard">/</span><span>MongoDB</span><span class="text-mustard">/</span><span>Scikit-Learn</span><span class="text-mustard">/</span><span>Flask</span><span class="text-mustard">/</span><span>NLP · LLMs</span><span class="text-mustard">/</span><span>Tailwind CSS</span><span class="text-mustard">/</span>
+      </span>
+    </div>
+  </div>
 
-                    <div class="about-info">
-                        <div class="about-box">
-                            <i class="uil uil-award about-icon"></i>
-                            <h3 class="about-title">Experience</h3>
-                            <span class="about-subtitle">Freshers</span>
-                        </div>
+  <!-- ================= ABOUT ================= -->
+  <section id="about" class="px-6 sm:px-10 lg:px-16 py-24 sm:py-28 border-b-2 border-ink">
+    <div class="max-w-6xl mx-auto">
+      <p class="font-mono text-xs text-brick reveal tracking-widest">SECTION 02 / ABOUT</p>
+      <h2 class="font-display text-3xl sm:text-5xl font-bold mt-3 reveal uppercase">Based in Ahmedabad, India</h2>
 
-                        <div class="about-box">
-                            <i class="uil uil-suitcase-alt about-icon"></i>
-                            <h3 class="about-title">Completed</h3>
-                            <span class="about-subtitle">10 + Projects</span>
-                        </div>
+      <div class="grid lg:grid-cols-[1fr_1fr] gap-14 mt-12 items-start">
+        <div class="reveal">
+          <p class="text-ink/80 text-lg leading-relaxed">
+            I'm an AI &amp; Python developer specialised in deep learning, CNNs, NLP and LLMs, with a track record of shipping real-world AgriTech products end to end — data preprocessing, model training, API integration and deployment. I'm just as comfortable on the frontend, building responsive interfaces that make the ML underneath actually usable.
+          </p>
+          <p class="text-ink/80 text-lg leading-relaxed mt-5">
+            Outside of internships, I'm finishing my B.Tech in Computer Engineering (Machine Learning &amp; AI) at Silver Oak University — graduating 2026.
+          </p>
 
-                        <div class="about-box">
-                            <i class="uil uil-headphones-alt about-icon"></i>
-                            <h3 class="about-title">Support</h3>
-                            <span class="about-subtitle">Online 24/7</span>
-                        </div>
-                    </div>
-
-                    <a href="#contact" class="button"><i class="uil uil-navigator button-icon"></i>Contact me</a>
-                </div>
+          <div class="grid sm:grid-cols-3 gap-0 mt-10 border-2 border-ink divide-x-2 divide-ink">
+            <div class="p-5">
+              <i class="uil uil-brain text-2xl"></i>
+              <p class="font-display font-bold mt-3 text-sm uppercase">Deep Learning</p>
+              <p class="text-ink/60 text-xs mt-1">CNNs, MobileNet, NLP &amp; LLMs</p>
             </div>
-        </section>
-
-        <section class="qualification section">
-            <h2 class="section-title" data-heading="My Journey">Qualifications</h2>
-
-            <div class="qualification-container container grid">
-                <div class="education">
-                    <h3 class="qualification-title"><i class="uil uil-graduation-cap"></i>Education</h3>
-
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <div class="circle-dot"></div>
-                            <h3 class="timeline-title">Silver Oak University (Ahmedabad, GJ)</h3>
-                            <p class="timeline-text">Btech in Computer Engineering (ML & AI)</p>
-                            <span class="timeline-date"><i class="uil uil-calendar-alt"></i>2022 - 2026</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="experience">
-                    <h3 class="qualification-title"><i class="uil uil-suitcase"></i>Experience</h3>
-
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <div class="circle-dot"></div>
-                            <h3 class="timeline-title">Deloitte (Virtual)</h3>
-                            <p class="timeline-text">Technology Job Simulation</p>
-                            <span class="timeline-date"><i class="uil uil-calendar-alt"></i>July 2025</span>
-                        </div>
-
-                        <div class="timeline-item">
-                            <div class="circle-dot"></div>
-                            <h3 class="timeline-title">YBI Foundation</h3>
-                            <p class="timeline-text">Python Developer</p>
-                            <span class="timeline-date"><i class="uil uil-calendar-alt"></i>July 2024 - August 2024</span>
-                        </div>
-
-                    </div>
-                </div>
+            <div class="p-5">
+              <i class="uil uil-server-network text-2xl"></i>
+              <p class="font-display font-bold mt-3 text-sm uppercase">Full-Stack</p>
+              <p class="text-ink/60 text-xs mt-1">FastAPI, Flask, React + Vite</p>
             </div>
-        </section>
-
-        <section class="skills section" id="skills">
-            <h2 class="section-title" data-heading="My Abilities">Skills</h2>
-
-            <div class="skills-container container grid">
-                <div class="skills-tabs">
-                    <div class="skills-header skills-active" data-target="#frontend">
-                        <i class="uil uil-brackets-curly skills-icon"></i>
-
-                        <div>
-                            <h1 class="skills-title">Frontend</h1>
-                            <span class="skills-subtitle"></span>
-                            
-                        </div>
-
-                        <i class="uil uil-angle-down skills-arrow"></i>
-                    </div>
-
-                    <div class="skills-header" data-target="#design">
-                        <i class="uil uil-swatchbook skills-icon"></i>
-
-                        <div>
-                            <h1 class="skills-title">ML & Ai</h1>
-                            <span class="skills-subtitle"></span>
-                            
-                        </div>
-
-                        <i class="uil uil-angle-down skills-arrow"></i>
-                    </div>
-
-                    <div class="skills-header" data-target="#backend">
-                        <i class="uil uil-server-network skills-icon"></i>
-
-                        <div>
-                            <h1 class="skills-title">Backend</h1>
-                            <span class="skills-subtitle"></span>
-
-                        </div>
-
-                        <i class="uil uil-angle-down skills-arrow"></i>
-                    </div>
-                </div>
-
-                <div class="skills-content">
-                    <div class="skills-group skills-active" data-content id="frontend">
-                        <div class="skills-list grid">
-                            <div class="skills-data">
-                                <div class="skills-titles">
-                                    <h3 class="skills-name">HTML</h3>
-                                    <span class="skills-number">90%</span>
-                                </div>
-
-                                <div class="skills-bar">
-                                    <span class="skills-percentage" style="width: 90%;"></span>
-                                </div>
-                            </div>
-
-                            <div class="skills-data">
-                                <div class="skills-titles">
-                                    <h3 class="skills-name">CSS</h3>
-                                    <span class="skills-number">80%</span>
-                                </div>
-
-                                <div class="skills-bar">
-                                    <span class="skills-percentage" style="width: 80%;"></span>
-                                </div>
-                            </div>
-
-                            <div class="skills-data">
-                                <div class="skills-titles">
-                                    <h3 class="skills-name">Javascript</h3>
-                                    <span class="skills-number">60%</span>
-                                </div>
-
-                                <div class="skills-bar">
-                                    <span class="skills-percentage" style="width: 60%;"></span>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="skills-group" data-content id="design">
-                        <div class="skills-list grid">
-                            <div class="skills-data">
-                                <div class="skills-titles">
-                                    <h3 class="skills-name">Python</h3>
-                                    <span class="skills-number">90%</span>
-                                </div>
-
-                                <div class="skills-bar">
-                                    <span class="skills-percentage" style="width: 90%;"></span>
-                                </div>
-                            </div>
-
-                            <div class="skills-data">
-                                <div class="skills-titles">
-                                    <h3 class="skills-name">Data Analysis</h3>
-                                    <span class="skills-number">80%</span>
-                                </div>
-
-                                <div class="skills-bar">
-                                    <span class="skills-percentage" style="width: 80%;"></span>
-                                </div>
-                            </div>
-
-                            <div class="skills-data">
-                                <div class="skills-titles">
-                                    <h3 class="skills-name">Data Structure & Algorithm</h3>
-                                    <span class="skills-number">70%</span>
-                                </div>
-
-                                <div class="skills-bar">
-                                    <span class="skills-percentage" style="width: 70%;"></span>
-                                </div>
-                            </div>
-                                                        <div class="skills-data">
-                                <div class="skills-titles">
-                                    <h3 class="skills-name">Natural Language Processing</h3>
-                                    <span class="skills-number">75%</span>
-                                </div>
-
-                                <div class="skills-bar">
-                                    <span class="skills-percentage" style="width: 70%;"></span>
-                                </div>
-                            </div>
-                            
-
-                        </div>
-                    </div>
-
-                    <div class="skills-group" data-content id="backend">
-                        <div class="skills-list grid">
-                            <div class="skills-data">
-                                <div class="skills-titles">
-                                    <h3 class="skills-name">Flask</h3>
-                                    <span class="skills-number">80%</span>
-                                </div>
-
-                                <div class="skills-bar">
-                                    <span class="skills-percentage" style="width: 80%;"></span>
-                                </div>
-                            </div>
-
-                            <div class="skills-data">
-                                <div class="skills-titles">
-                                    <h3 class="skills-name">Python</h3>
-                                    <span class="skills-number">80%</span>
-                                </div>
-
-                                <div class="skills-bar">
-                                    <span class="skills-percentage" style="width: 80%;"></span>
-                                </div>
-                            </div>
-
-                            <div class="skills-data">
-                                <div class="skills-titles">
-                                    <h3 class="skills-name">MySQL</h3>
-                                    <span class="skills-number">70%</span>
-                                </div>
-
-                                <div class="skills-bar">
-                                    <span class="skills-percentage" style="width: 70%;"></span>
-                                </div>
-                            </div>
-
-                            <div class="skills-data">
-                                <div class="skills-titles">
-                                    <h3 class="skills-name">Firebase</h3>
-                                    <span class="skills-number">75%</span>
-                                </div>
-
-                                <div class="skills-bar">
-                                    <span class="skills-percentage" style="width: 75%;"></span>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
+            <div class="p-5">
+              <i class="uil uil-leaf text-2xl"></i>
+              <p class="font-display font-bold mt-3 text-sm uppercase">AgriTech</p>
+              <p class="text-ink/60 text-xs mt-1">Products built for real farmers</p>
             </div>
-        </section>
-
-        <section class="work section" id="work">
-            <h2 class="section-title" data-heading="My Portfolio">Recent Works</h2>
-
-            <div class="work-filters">
-                <span class="work-item active-work" data-filter="all">All</span>
-                <span class="work-item" data-filter=".web">Web</span>
-                <span class="work-item" data-filter=".app">ML</span>
-                <span class="work-item" data-filter=".design">AI</span>
-            </div>
-
-            <div class="work-container container grid">
-                <div class="work-card mix web">
-                    <img src="https://i.postimg.cc/43Th5VXJ/work-1.png" alt="" class="work-img">
-                    <h3 class="work-title">Web Design</h3>
-                    <span class="work-button">View<i class="uil uil-arrow-right work-button-icon"></i></span>
-
-                    <div class="portfolio-item-details">
-                        <h3 class="details-title">PieCruiser</h3>
-                        <p class="details-description">An intuitive navigation structure, a portfolio section highlighting recent projects, and a contact form to facilitate communication with potential clients and partners.</p>
-                        <ul class="details-info">
-                            <li>Created - <span>2024</span></li>
-                            <li>Technologies - <span>html css</span></li>
-                            <li>Role - <span>frontend</span></li>
-                            <li>View - <span><a href="https://piecruiser.github.io/">piecruiser.github.io</a></span></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="work-card mix app">
-                    <img src="https://i.ibb.co/7J2WMXK5/peakpx-1.jpg" alt="" class="work-img">
-                    <h3 class="work-title">Machine Learning</h3>
-                    <span class="work-button">View<i class="uil uil-arrow-right work-button-icon"></i></span>
-
-                    <div class="portfolio-item-details">
-                        <h3 class="details-title">Face Recognition based Attendance System</h3>
-                        <p class="details-description">The Face Recognition Based Attendance System is a robust and efficient application designed to automate the attendance process using facial recognition technology. Leveraging the K-Nearest Neighbors (KNN) algorithm, this system provides an accurate and user-friendly method to track attendance, minimizing manual input and maximizing efficiency.</p>
-                        <ul class="details-info">
-                            <li>Created - <span>2024</span></li>
-                            <li>Technologies - <span>Python OpenCV scikit-learn Flask NumPy Pandas Matplotlib KNN</span></li>
-                            <li>Role - <span>Machine Learning</span></li>
-                            <li>View - <span><a href="https://github.com/iamaindrik/face-attendance-system">github.com/iamaindrik/face-attendance-system</a></span></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="work-card mix design">
-                    <img src="https://i.postimg.cc/QNB1jXYZ/work-3.png" alt="" class="work-img">
-                    <h3 class="work-title">Ai Works</h3>
-                    <span class="work-button">View<i class="uil uil-arrow-right work-button-icon"></i></span>
-
-                    <div class="portfolio-item-details">
-                        <h3 class="details-title">AI Note Summarizer</h3>
-                        <p class="details-description">AI Note Summarizer is a Streamlit web application that leverages state-of-the-art NLP models to summarize lecture notes and generate interactive quizzes from the summarized content. Perfect for students, educators, and lifelong learners.</p>
-                        <ul class="details-info">
-                            <li>Created - <span>2025</span></li>
-                            <li>Technologies - <span>Python streamlit transformers torch</span></li>
-                            <li>Role - <span>Artificial intelligence</span></li>
-                            <li>View - <span><a href="https://ai-note-summary.streamlit.app/">Launch on Streamlit</a></span></li>
-                        </ul>
-                    </div>
-                </div>
-
-
-            </div>
-        </section>
-
-        <div class="portfolio-popup">
-            <div class="portfolio-popup-inner">
-                <div class="portfolio-popup-content grid">
-                    <span class="portfolio-popup-close"><i class="uil uil-times"></i></span>
-                    <div class="pp-thumbnail">
-                        <img src="https://i.postimg.cc/sXLjnC5p/work-2.png" alt="" class="portfolio-popup-img">
-                    </div>
-
-                    <div class="portfolio-popup-info">
-                        <div class="portfolio-popup-subtitle">Featured - <span>Design</span></div>
-                        <div class="portfolio-popup-body">
-                            <h3 class="details-title"></h3>
-                            <p class="details-description"></p>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
 
-        <section class="services section" id="services">
-            <h2 class="section-title" data-heading="Services">What I Offer</h2>
-
-            <div class="services-container container grid">
-                <div class="services-content">
-                    <div>
-                        <i class="uil uil-web-grid services-icon"></i>
-                        <h3 class="services-title">Web <br> Designer</h3>
-                    </div>
-
-                    <span class="services-button">
-                        View More <i class="uil uil-arrow-right services-button-icon"></i>
-                    </span>
-
-                    <div class="services-modal">
-                        <div class="services-modal-content">
-                            <i class="uil uil-times services-modal-close"></i>
-
-                            <h3 class="services-modal-title">Web Designer</h3>
-                            <p class="services-modal-description">I create visually stunning, responsive, and user-friendly websites that elevate your online presence.</p>
-
-                            <ul class="services-modal-services grid">
-                                <li class="services-modal-service">
-                                    <i class="uil uil-check-circle services-modal-icon"></i>
-                                    <p class="services-modal-info">User Interface Development</p>
-                                </li>
-
-                                <li class="services-modal-service">
-                                    <i class="uil uil-check-circle services-modal-icon"></i>
-                                    <p class="services-modal-info">Web Page Development</p>
-                                </li>
-
-                                <li class="services-modal-service">
-                                    <i class="uil uil-check-circle services-modal-icon"></i>
-                                    <p class="services-modal-info">Interactive UX/UI Creations</p>
-                                </li>
-
-                                <li class="services-modal-service">
-                                    <i class="uil uil-check-circle services-modal-icon"></i>
-                                    <p class="services-modal-info">Company Brand Positioning</p>
-                                </li>
-
-                                <li class="services-modal-service">
-                                    <i class="uil uil-check-circle services-modal-icon"></i>
-                                    <p class="services-modal-info">Design and Mockup of products for companies</p>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="services-content">
-                    <div>
-                        <i class="uil uil-arrow services-icon"></i>
-                        <h3 class="services-title">Python<br> Developer</h3>
-                    </div>
-
-                    <span class="services-button">
-                        View More <i class="uil uil-arrow-right services-button-icon"></i>
-                    </span>
-
-                    <div class="services-modal">
-                        <div class="services-modal-content">
-                            <i class="uil uil-times services-modal-close"></i>
-
-                            <h3 class="services-modal-title">Python Developer</h3>
-                            <p class="services-modal-description">I build efficient, scalable, and automation-driven Python solutions for web, data, and AI applications.</p>
-
-                            <ul class="services-modal-services grid">
-                                <li class="services-modal-service">
-                                    <i class="uil uil-check-circle services-modal-icon"></i>
-                                    <p class="services-modal-info">Bot Development</p>
-                                </li>
-
-                                <li class="services-modal-service">
-                                    <i class="uil uil-check-circle services-modal-icon"></i>
-                                    <p class="services-modal-info">Automation Scripts</p>
-                                </li>
-
-                                <li class="services-modal-service">
-                                    <i class="uil uil-check-circle services-modal-icon"></i>
-                                    <p class="services-modal-info">Data Analysis & Visualization</p>
-                                </li>
-
-                                <li class="services-modal-service">
-                                    <i class="uil uil-check-circle services-modal-icon"></i>
-                                    <p class="services-modal-info">Machine Learning Solutions</p>
-                                </li>
-
-                                <li class="services-modal-service">
-                                    <i class="uil uil-check-circle services-modal-icon"></i>
-                                    <p class="services-modal-info">Web Development</p>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="services-content">
-                    <div>
-                        <i class="uil uil-edit services-icon"></i>
-                        <h3 class="services-title">AI/ML <br> Integration</h3>
-                    </div>
-
-                    <span class="services-button">
-                        View More <i class="uil uil-arrow-right services-button-icon"></i>
-                    </span>
-
-                    <div class="services-modal">
-                        <div class="services-modal-content">
-                            <i class="uil uil-times services-modal-close"></i>
-
-                            <h3 class="services-modal-title">AI/ML Integration</h3>
-                            <p class="services-modal-description">Add intelligent features like image recognition, recommendations, or chatbots using machine learning.</p>
-
-                            <ul class="services-modal-services grid">
-                                <li class="services-modal-service">
-                                    <i class="uil uil-check-circle services-modal-icon"></i>
-                                    <p class="services-modal-info">Image Recognition</p>
-                                </li>
-
-                                <li class="services-modal-service">
-                                    <i class="uil uil-check-circle services-modal-icon"></i>
-                                    <p class="services-modal-info">Chatbots</p>
-                                </li>
-
-                                <li class="services-modal-service">
-                                    <i class="uil uil-check-circle services-modal-icon"></i>
-                                    <p class="services-modal-info">Object Detection</p>
-                                </li>
-
-                                <li class="services-modal-service">
-                                    <i class="uil uil-check-circle services-modal-icon"></i>
-                                    <p class="services-modal-info">IoT & Embedded Systems Projects</p>
-                                </li>
-
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+        <div class="reveal bracketed p-1">
+          <span class="bk-tr"></span><span class="bk-bl"></span>
+          <div class="border-2 border-ink p-7 bg-white/40">
+            <p class="font-mono text-[11px] text-brick mb-5 tracking-widest">CONTACT CARD</p>
+            <ul class="space-y-4 text-sm">
+              <li class="flex items-center gap-3"><i class="uil uil-envelope-edit"></i> iamaindrik@gmail.com</li>
+              <li class="flex items-center gap-3"><i class="uil uil-whatsapp"></i> +91 86092 94784</li>
+              <li class="flex items-center gap-3"><i class="uil uil-linkedin"></i> linkedin.com/in/aindriksarkar</li>
+              <li class="flex items-center gap-3"><i class="uil uil-globe"></i> iamaindrik.github.io</li>
+              <li class="flex items-center gap-3"><i class="uil uil-location-point"></i> Ahmedabad, Gujarat, India</li>
+            </ul>
+            <div class="border-t-2 border-ink my-6"></div>
+            <p class="font-mono text-[11px] text-brick mb-3 tracking-widest">LANGUAGES</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="text-xs font-mono px-3 py-1.5 border border-ink">Bengali · Native</span>
+              <span class="text-xs font-mono px-3 py-1.5 border border-ink">English · Professional</span>
+              <span class="text-xs font-mono px-3 py-1.5 border border-ink">Hindi · Elementary</span>
             </div>
-        </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- ================= JOURNEY ================= -->
+  <section id="journey" class="px-6 sm:px-10 lg:px-16 py-24 sm:py-28 border-b-2 border-ink hatch">
+    <div class="max-w-6xl mx-auto">
+      <p class="font-mono text-xs text-brick reveal tracking-widest">SECTION 03 / JOURNEY</p>
+      <h2 class="font-display text-3xl sm:text-5xl font-bold mt-3 reveal uppercase">Education &amp; Experience</h2>
 
+      <div class="grid lg:grid-cols-2 gap-14 mt-14">
+        <div class="reveal">
+          <h3 class="font-display text-lg font-bold flex items-center gap-3 mb-8 uppercase"><i class="uil uil-graduation-cap"></i> Education</h3>
+          <div class="border-l-2 border-ink pl-6">
+            <p class="font-display font-bold">Silver Oak University, Ahmedabad</p>
+            <p class="text-ink/70 text-sm mt-1">B.Tech, Computer Engineering — Machine Learning &amp; AI</p>
+            <p class="font-mono text-xs text-ink/50 mt-2">SEP 2022 — JUN 2026</p>
+          </div>
+        </div>
 
-        <section class="contact section" id="contact">
-            <h2 class="section-title" data-heading="Get in Touch">Contact me</h2>
+        <div class="reveal">
+          <h3 class="font-display text-lg font-bold flex items-center gap-3 mb-8 uppercase"><i class="uil uil-suitcase"></i> Experience</h3>
+          <div class="border-l-2 border-ink pl-6 space-y-10">
+            <div>
+              <p class="font-display font-bold">AI Intern — Tusker AI</p>
+              <p class="text-ink/70 text-sm mt-1">Built Organic-Pie, an AI crop-disease prediction platform: MobileNet CNN, FastAPI + MongoDB, Twilio OTP auth, React + Vite frontend.</p>
+              <p class="font-mono text-xs text-ink/50 mt-2">DEC 2025 — APR 2026 · AHMEDABAD</p>
+            </div>
+            <div>
+              <p class="font-display font-bold">Python Developer Intern — YBI Foundation</p>
+              <p class="text-ink/70 text-sm mt-1">Built a mileage-prediction model with Scikit-Learn &amp; Flask; NumPy/Pandas pipelines visualised with Matplotlib.</p>
+              <p class="font-mono text-xs text-ink/50 mt-2">JUL 2024 — AUG 2024 · AHMEDABAD</p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-            <div class="contact-container container grid">
-                <div class="contact-content">
-                    <div class="contact-info">
-                        <div class="contact-card">
-                            <i class="uil uil-envelope-edit contact-card-icon"></i>
-                            <h3 class="contact-card-title">Email</h3>
-                            <span class="contact-card-data">iamaindrik@gmail.com</span>
-                            <span class="contact-button">Write me <i class="uil uil-arrow-right contact-button-icon"></i></span>
-                        </div>
+      <div class="mt-16 reveal">
+        <h3 class="font-display text-lg font-bold flex items-center gap-3 mb-6 uppercase"><i class="uil uil-award"></i> Certifications</h3>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-0 border-2 border-ink divide-x-0 lg:divide-x-2 divide-y-2 lg:divide-y-0 divide-ink">
+          <div class="p-5 text-sm bg-paper"><i class="uil uil-check-circle mb-2 block text-lg text-teal"></i>Crash Course on Python — Google / Coursera</div>
+          <div class="p-5 text-sm bg-paper"><i class="uil uil-check-circle mb-2 block text-lg text-teal"></i>Web Development Certification — DevTown</div>
+          <div class="p-5 text-sm bg-paper"><i class="uil uil-check-circle mb-2 block text-lg text-teal"></i>Technology Job Simulation — Deloitte Australia</div>
+          <div class="p-5 text-sm bg-paper"><i class="uil uil-check-circle mb-2 block text-lg text-teal"></i>Google Cloud Skills Boost — Verified</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-                        <div class="contact-card">
-                            <i class="uil uil-whatsapp contact-card-icon"></i>
-                            <h3 class="contact-card-title">Whatsapp</h3>
-                            <span class="contact-card-data">+91 8609294784</span>
-                            <span class="contact-button">Write me <i class="uil uil-arrow-right contact-button-icon"></i></span>
-                        </div>
+  <!-- ================= SKILLS ================= -->
+  <section id="skills" class="px-6 sm:px-10 lg:px-16 py-24 sm:py-28 border-b-2 border-ink">
+    <div class="max-w-6xl mx-auto">
+      <p class="font-mono text-xs text-brick reveal tracking-widest">SECTION 04 / SKILLS</p>
+      <h2 class="font-display text-3xl sm:text-5xl font-bold mt-3 reveal uppercase">What I work with</h2>
 
-                        <div class="contact-card">
-                            <i class="uil uil-instagram contact-card-icon"></i>
-                            <h3 class="contact-card-title">Instagram</h3>
-                            <span class="contact-card-data">aindrik.in</span>
-                            <span class="contact-button">Write me <i class="uil uil-arrow-right contact-button-icon"></i></span>
-                        </div>
-                    </div>
-                </div>
+      <div class="grid lg:grid-cols-[260px_1fr] gap-10 mt-14">
+        <div class="flex lg:flex-col gap-0 reveal border-2 border-ink lg:divide-y-2 divide-ink" id="skills-tabs">
+          <button data-target="ai" class="skills-tab active flex-1 lg:flex-none text-left flex items-center gap-3 px-5 py-4 transition-colors font-display font-bold text-sm uppercase">
+            <i class="uil uil-brain text-xl"></i> AI &amp; ML
+          </button>
+          <button data-target="backend" class="skills-tab flex-1 lg:flex-none text-left flex items-center gap-3 px-5 py-4 transition-colors font-display font-bold text-sm uppercase">
+            <i class="uil uil-server-network text-xl"></i> Backend
+          </button>
+          <button data-target="frontend" class="skills-tab flex-1 lg:flex-none text-left flex items-center gap-3 px-5 py-4 transition-colors font-display font-bold text-sm uppercase">
+            <i class="uil uil-brackets-curly text-xl"></i> Frontend
+          </button>
+        </div>
 
-                <div class="contact-content">
-                    <form action="https://formsubmit.co/birdaindrik@gmail.com" class="contact-form" method="post">
-                                  <!-- Honeypot -->
-          <input type="text" name="_honey" style="display: none;">
+        <div class="reveal">
+          <div class="skills-panel grid sm:grid-cols-2 gap-x-10 gap-y-6" id="panel-ai">
+            <div class="skill-row" data-value="92"><div class="flex justify-between font-mono text-xs mb-2 uppercase"><span>Python</span><span class="skill-val">92%</span></div><div class="h-2 bg-white border border-ink"><div class="bar-fill h-full bg-ink"></div></div></div>
+            <div class="skill-row" data-value="85"><div class="flex justify-between font-mono text-xs mb-2 uppercase"><span>TensorFlow / CNNs</span><span class="skill-val">85%</span></div><div class="h-2 bg-white border border-ink"><div class="bar-fill h-full bg-ink"></div></div></div>
+            <div class="skill-row" data-value="88"><div class="flex justify-between font-mono text-xs mb-2 uppercase"><span>Scikit-Learn</span><span class="skill-val">88%</span></div><div class="h-2 bg-white border border-ink"><div class="bar-fill h-full bg-ink"></div></div></div>
+            <div class="skill-row" data-value="75"><div class="flex justify-between font-mono text-xs mb-2 uppercase"><span>NLP &amp; LLMs</span><span class="skill-val">75%</span></div><div class="h-2 bg-white border border-ink"><div class="bar-fill h-full bg-ink"></div></div></div>
+            <div class="skill-row" data-value="80"><div class="flex justify-between font-mono text-xs mb-2 uppercase"><span>Pandas / NumPy / Matplotlib</span><span class="skill-val">80%</span></div><div class="h-2 bg-white border border-ink"><div class="bar-fill h-full bg-ink"></div></div></div>
+          </div>
+
+          <div class="skills-panel hidden grid sm:grid-cols-2 gap-x-10 gap-y-6" id="panel-backend">
+            <div class="skill-row" data-value="86"><div class="flex justify-between font-mono text-xs mb-2 uppercase"><span>FastAPI</span><span class="skill-val">86%</span></div><div class="h-2 bg-white border border-ink"><div class="bar-fill h-full bg-ink"></div></div></div>
+            <div class="skill-row" data-value="80"><div class="flex justify-between font-mono text-xs mb-2 uppercase"><span>Flask</span><span class="skill-val">80%</span></div><div class="h-2 bg-white border border-ink"><div class="bar-fill h-full bg-ink"></div></div></div>
+            <div class="skill-row" data-value="78"><div class="flex justify-between font-mono text-xs mb-2 uppercase"><span>MongoDB</span><span class="skill-val">78%</span></div><div class="h-2 bg-white border border-ink"><div class="bar-fill h-full bg-ink"></div></div></div>
+            <div class="skill-row" data-value="82"><div class="flex justify-between font-mono text-xs mb-2 uppercase"><span>REST APIs</span><span class="skill-val">82%</span></div><div class="h-2 bg-white border border-ink"><div class="bar-fill h-full bg-ink"></div></div></div>
+            <div class="skill-row" data-value="75"><div class="flex justify-between font-mono text-xs mb-2 uppercase"><span>OTP Auth (Twilio)</span><span class="skill-val">75%</span></div><div class="h-2 bg-white border border-ink"><div class="bar-fill h-full bg-ink"></div></div></div>
+          </div>
+
+          <div class="skills-panel hidden grid sm:grid-cols-2 gap-x-10 gap-y-6" id="panel-frontend">
+            <div class="skill-row" data-value="90"><div class="flex justify-between font-mono text-xs mb-2 uppercase"><span>HTML</span><span class="skill-val">90%</span></div><div class="h-2 bg-white border border-ink"><div class="bar-fill h-full bg-ink"></div></div></div>
+            <div class="skill-row" data-value="85"><div class="flex justify-between font-mono text-xs mb-2 uppercase"><span>CSS / Tailwind / Bootstrap</span><span class="skill-val">85%</span></div><div class="h-2 bg-white border border-ink"><div class="bar-fill h-full bg-ink"></div></div></div>
+            <div class="skill-row" data-value="76"><div class="flex justify-between font-mono text-xs mb-2 uppercase"><span>React + Vite</span><span class="skill-val">76%</span></div><div class="h-2 bg-white border border-ink"><div class="bar-fill h-full bg-ink"></div></div></div>
+            <div class="skill-row" data-value="65"><div class="flex justify-between font-mono text-xs mb-2 uppercase"><span>JavaScript</span><span class="skill-val">65%</span></div><div class="h-2 bg-white border border-ink"><div class="bar-fill h-full bg-ink"></div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= WORK ================= -->
+  <section id="work" class="px-6 sm:px-10 lg:px-16 py-24 sm:py-28 border-b-2 border-ink">
+    <div class="max-w-6xl mx-auto">
+      <p class="font-mono text-xs text-brick reveal tracking-widest">SECTION 05 / WORK</p>
+      <h2 class="font-display text-3xl sm:text-5xl font-bold mt-3 reveal uppercase">Selected Projects</h2>
+
+      <div class="flex flex-wrap gap-0 mt-8 reveal border-2 border-ink w-max divide-x-2 divide-ink" id="work-filters">
+        <button data-filter="all" class="filter-btn active font-mono text-xs px-4 py-2 uppercase transition-colors">All</button>
+        <button data-filter="agritech" class="filter-btn font-mono text-xs px-4 py-2 uppercase transition-colors">AgriTech</button>
+        <button data-filter="ml" class="filter-btn font-mono text-xs px-4 py-2 uppercase transition-colors">ML</button>
+        <button data-filter="web" class="filter-btn font-mono text-xs px-4 py-2 uppercase transition-colors">Web</button>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-0 mt-10 border-2 border-ink divide-y-2 sm:divide-y-0 sm:divide-x-2 divide-ink" id="work-grid">
+
+        <article class="work-card reveal group" data-cats="agritech ml web"
+          data-title="Organic-Pie — AI Crop Disease Prediction & Advisory"
+          data-desc="A full-stack AI web app enabling farmers to upload crop images and receive instant disease diagnosis and advisory insights. Trained a MobileNet-based CNN achieving high-accuracy classification across multiple crop categories, with OTP-secured auth (Twilio) and a scalable FastAPI + MongoDB backend, wrapped in a responsive React + Vite frontend."
+          data-tags="Python · TensorFlow · CNN (MobileNet) · FastAPI · MongoDB · React + Vite · Twilio"
+          data-year="Dec 2025 – Apr 2026" data-role="AI & Full-Stack Developer"
+          data-link="https://github.com/iamaindrik/Organic-Pie" data-link-label="github.com/iamaindrik/Organic-Pie">
+          <div class="p-6 sm:p-8 border-b-2 sm:border-b-0 border-ink">
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-[11px] text-brick tracking-widest">FLAGSHIP · AGRITECH</span>
+              <span class="stamp font-mono text-[10px] border border-brick text-brick px-1.5 py-0.5">LIVE</span>
+            </div>
+            <h3 class="font-display text-2xl font-bold mt-3">Organic-Pie</h3>
+            <p class="text-ink/70 text-sm mt-2 leading-relaxed">AI crop disease prediction &amp; advisory platform, deployed for real farmer use.</p>
+            <button class="work-open mt-6 inline-flex items-center gap-2 border-2 border-ink px-4 py-2 text-sm font-mono uppercase hover:bg-ink hover:text-paper transition-colors">View case <i class="uil uil-arrow-right"></i></button>
+          </div>
+        </article>
+
+        <article class="work-card reveal group" data-cats="web"
+          data-title="Green Refuel Organics LLP — Brand Website"
+          data-desc="Designed and developed the official portfolio website for Green Refuel Organics LLP, an eco-conscious sustainable brand. Built a fully responsive, modern UI/UX across mobile, tablet and desktop, translating the founder's vision into a structured, brand-aligned experience showcasing the company's mission, services and values."
+          data-tags="HTML · CSS · Bootstrap · Tailwind CSS · JavaScript"
+          data-year="Mar 2026" data-role="Frontend Developer"
+          data-link="https://greenrefuelorganics.com" data-link-label="greenrefuelorganics.com">
+          <div class="p-6 sm:p-8 border-b-2 sm:border-b-0 border-ink">
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-[11px] text-teal tracking-widest">CLIENT WORK · WEB</span>
+              <span class="stamp font-mono text-[10px] border border-teal text-teal px-1.5 py-0.5">SHIP</span>
+            </div>
+            <h3 class="font-display text-2xl font-bold mt-3">Green Refuel Organics</h3>
+            <p class="text-ink/70 text-sm mt-2 leading-relaxed">Responsive brand website for a sustainable-products company.</p>
+            <button class="work-open mt-6 inline-flex items-center gap-2 border-2 border-ink px-4 py-2 text-sm font-mono uppercase hover:bg-ink hover:text-paper transition-colors">View case <i class="uil uil-arrow-right"></i></button>
+          </div>
+        </article>
+
+        <article class="work-card reveal group" data-cats="ml"
+          data-title="Face Recognition Based Attendance System"
+          data-desc="A robust application that automates attendance using facial recognition. Leveraging the K-Nearest Neighbors (KNN) algorithm, the system provides an accurate, user-friendly way to track attendance, minimising manual input and maximising efficiency."
+          data-tags="Python · OpenCV · Scikit-Learn · Flask · NumPy · Pandas · KNN"
+          data-year="2024" data-role="Machine Learning Developer"
+          data-link="https://github.com/iamaindrik/face-attendance-system" data-link-label="github.com/iamaindrik/face-attendance-system">
+          <div class="p-6 sm:p-8 border-ink">
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-[11px] text-mustard tracking-widest">MACHINE LEARNING</span>
+              <span class="stamp font-mono text-[10px] border border-mustard text-mustard px-1.5 py-0.5">2024</span>
+            </div>
+            <h3 class="font-display text-2xl font-bold mt-3">Face Recognition Attendance</h3>
+            <p class="text-ink/70 text-sm mt-2 leading-relaxed">KNN-powered attendance automation from live facial recognition.</p>
+            <button class="work-open mt-6 inline-flex items-center gap-2 border-2 border-ink px-4 py-2 text-sm font-mono uppercase hover:bg-ink hover:text-paper transition-colors">View case <i class="uil uil-arrow-right"></i></button>
+          </div>
+        </article>
+
+        <article class="work-card reveal group" data-cats="ml"
+          data-title="AI Note Summarizer"
+          data-desc="A Streamlit web application that leverages state-of-the-art NLP models to summarise lecture notes and generate interactive quizzes from the summarised content — built for students, educators and lifelong learners."
+          data-tags="Python · Streamlit · Transformers · PyTorch"
+          data-year="2025" data-role="AI Developer"
+          data-link="https://ai-note-summary.streamlit.app/" data-link-label="Launch on Streamlit">
+          <div class="p-6 sm:p-8">
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-[11px] text-brick tracking-widest">NLP · TOOLING</span>
+              <span class="stamp font-mono text-[10px] border border-brick text-brick px-1.5 py-0.5">2025</span>
+            </div>
+            <h3 class="font-display text-2xl font-bold mt-3">AI Note Summarizer</h3>
+            <p class="text-ink/70 text-sm mt-2 leading-relaxed">Summarises lecture notes and generates quizzes with NLP models.</p>
+            <button class="work-open mt-6 inline-flex items-center gap-2 border-2 border-ink px-4 py-2 text-sm font-mono uppercase hover:bg-ink hover:text-paper transition-colors">View case <i class="uil uil-arrow-right"></i></button>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Work modal -->
+  <div id="work-modal" class="modal fixed inset-0 z-50 flex items-center justify-center p-5 bg-black/70">
+    <div class="modal-panel bg-paper border-2 border-ink max-w-lg w-full p-8 relative">
+      <button id="work-modal-close" class="absolute top-5 right-5"><i class="uil uil-times text-xl"></i></button>
+      <p id="wm-role" class="font-mono text-xs text-brick tracking-widest"></p>
+      <h3 id="wm-title" class="font-display text-2xl font-bold mt-2"></h3>
+      <p id="wm-desc" class="text-ink/70 text-sm leading-relaxed mt-4"></p>
+      <div class="border-t-2 border-ink my-5"></div>
+      <p class="font-mono text-[11px] text-ink/50 tracking-widest">TECH STACK</p>
+      <p id="wm-tags" class="text-sm mt-1"></p>
+      <p class="font-mono text-[11px] text-ink/50 mt-4 tracking-widest">YEAR</p>
+      <p id="wm-year" class="text-sm mt-1"></p>
+      <a id="wm-link" href="#" target="_blank" class="mt-6 inline-flex items-center gap-2 bg-ink text-paper font-semibold px-5 py-2.5 text-sm">
+        View project <i class="uil uil-external-link-alt"></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- ================= SERVICES ================= -->
+  <section id="services" class="px-6 sm:px-10 lg:px-16 py-24 sm:py-28 border-b-2 border-ink">
+    <div class="max-w-6xl mx-auto">
+      <p class="font-mono text-xs text-brick reveal tracking-widest">SECTION 06 / SERVICES</p>
+      <h2 class="font-display text-3xl sm:text-5xl font-bold mt-3 reveal uppercase">What I can build for you</h2>
+
+      <div class="grid sm:grid-cols-3 gap-0 mt-14 border-2 border-ink divide-y-2 sm:divide-y-0 sm:divide-x-2 divide-ink">
+        <div class="service-card reveal p-7" data-service="0">
+          <i class="uil uil-brain text-3xl"></i>
+          <h3 class="font-display text-lg font-bold mt-4 uppercase">AI / ML Integration</h3>
+          <p class="text-ink/70 text-sm mt-2">Image recognition, chatbots, object detection &amp; embedded ML.</p>
+          <button class="service-open mt-5 font-mono text-xs uppercase inline-flex items-center gap-2 border-b-2 border-ink">View more <i class="uil uil-arrow-right"></i></button>
+        </div>
+        <div class="service-card reveal p-7" data-service="1">
+          <i class="uil uil-web-grid text-3xl"></i>
+          <h3 class="font-display text-lg font-bold mt-4 uppercase">Web Development</h3>
+          <p class="text-ink/70 text-sm mt-2">Responsive, brand-aligned sites and product UIs, mobile to desktop.</p>
+          <button class="service-open mt-5 font-mono text-xs uppercase inline-flex items-center gap-2 border-b-2 border-ink">View more <i class="uil uil-arrow-right"></i></button>
+        </div>
+        <div class="service-card reveal p-7" data-service="2">
+          <i class="uil uil-arrow text-3xl"></i>
+          <h3 class="font-display text-lg font-bold mt-4 uppercase">Python &amp; Automation</h3>
+          <p class="text-ink/70 text-sm mt-2">APIs, bots, data pipelines and scalable backend systems.</p>
+          <button class="service-open mt-5 font-mono text-xs uppercase inline-flex items-center gap-2 border-b-2 border-ink">View more <i class="uil uil-arrow-right"></i></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="service-modal" class="modal fixed inset-0 z-50 flex items-center justify-center p-5 bg-black/70">
+    <div class="modal-panel bg-paper border-2 border-ink max-w-md w-full p-8 relative">
+      <button id="service-modal-close" class="absolute top-5 right-5"><i class="uil uil-times text-xl"></i></button>
+      <h3 id="sm-title" class="font-display text-2xl font-bold"></h3>
+      <p id="sm-desc" class="text-ink/70 text-sm leading-relaxed mt-3"></p>
+      <ul id="sm-list" class="mt-5 space-y-2 text-sm"></ul>
+    </div>
+  </div>
+
+  <!-- ================= CONTACT ================= -->
+  <section id="contact" class="px-6 sm:px-10 lg:px-16 py-24 sm:py-28 hatch">
+    <div class="max-w-6xl mx-auto">
+      <p class="font-mono text-xs text-brick reveal tracking-widest">SECTION 07 / CONTACT</p>
+      <h2 class="font-display text-3xl sm:text-5xl font-bold mt-3 reveal uppercase">Let's build something together</h2>
+
+      <div class="grid lg:grid-cols-2 gap-14 mt-14">
+        <div class="space-y-0 reveal border-2 border-ink divide-y-2 divide-ink">
+          <a href="mailto:iamaindrik@gmail.com" class="flex items-center justify-between p-6 hover:bg-ink hover:text-paper transition-colors group">
+            <div class="flex items-center gap-4">
+              <i class="uil uil-envelope-edit text-2xl"></i>
+              <div><p class="font-display font-bold uppercase text-sm">Email</p><p class="text-sm opacity-70">iamaindrik@gmail.com</p></div>
+            </div>
+            <i class="uil uil-arrow-right group-hover:translate-x-1 transition-all"></i>
+          </a>
+          <a href="https://wa.me/918609294784" target="_blank" class="flex items-center justify-between p-6 hover:bg-ink hover:text-paper transition-colors group">
+            <div class="flex items-center gap-4">
+              <i class="uil uil-whatsapp text-2xl"></i>
+              <div><p class="font-display font-bold uppercase text-sm">WhatsApp</p><p class="text-sm opacity-70">+91 86092 94784</p></div>
+            </div>
+            <i class="uil uil-arrow-right group-hover:translate-x-1 transition-all"></i>
+          </a>
+          <a href="https://www.instagram.com/aindrik.in" target="_blank" class="flex items-center justify-between p-6 hover:bg-ink hover:text-paper transition-colors group">
+            <div class="flex items-center gap-4">
+              <i class="uil uil-instagram text-2xl"></i>
+              <div><p class="font-display font-bold uppercase text-sm">Instagram</p><p class="text-sm opacity-70">aindrik.in</p></div>
+            </div>
+            <i class="uil uil-arrow-right group-hover:translate-x-1 transition-all"></i>
+          </a>
+        </div>
+
+        <form action="https://formsubmit.co/birdaindrik@gmail.com" method="post" class="reveal border-2 border-ink p-8 space-y-6 bg-white/40">
+          <input type="text" name="_honey" style="display:none">
           <input type="hidden" name="_captcha" value="false">
           <input type="hidden" name="_next" value="https://iamaindrik.github.io/submit.html">
-                        
-                        <div class="input-container">
-                            <input type="text" class="input" name="subject">
-                            <label for="">Subject</label>
-                            <span>Subject</span>
-                        </div>
-    
-                        <div class="input-container">
-                            <input type="email" class="input" name="email">
-                            <label for="">Email</label>
-                            <span>Email</span>
-                        </div>
-    
-                        <div class="input-container">
-                            <input type="tel" class="input" name="phone">
-                            <label for="">Phone</label>
-                            <span>Phone</span>
-                        </div>
-    
-                        <div class="input-container textarea">
-                            <textarea id="" class="input" name="message"></textarea>
-                            <label for="">Message</label>
-                            <span>Message</span>
-                        </div>
-    
-                        <button type="submit" class="button" ><i class="uil uil-navigator button-icon"></i>Send Message</button>
-                    </form>
-                </div>
-            </div>
 
-        </section>
+          <div class="input-wrap relative">
+            <input type="text" name="subject" required class="w-full bg-transparent border-b-2 border-ink outline-none py-2 text-ink" placeholder=" ">
+            <label class="float-label absolute left-0 top-2 text-ink/50 text-sm pointer-events-none uppercase font-mono">Subject</label>
+          </div>
+          <div class="input-wrap relative">
+            <input type="email" name="email" required class="w-full bg-transparent border-b-2 border-ink outline-none py-2 text-ink" placeholder=" ">
+            <label class="float-label absolute left-0 top-2 text-ink/50 text-sm pointer-events-none uppercase font-mono">Email</label>
+          </div>
+          <div class="input-wrap relative">
+            <input type="tel" name="phone" class="w-full bg-transparent border-b-2 border-ink outline-none py-2 text-ink" placeholder=" ">
+            <label class="float-label absolute left-0 top-2 text-ink/50 text-sm pointer-events-none uppercase font-mono">Phone</label>
+          </div>
+          <div class="input-wrap relative">
+            <textarea name="message" required rows="3" class="w-full bg-transparent border-b-2 border-ink outline-none py-2 text-ink resize-none" placeholder=" "></textarea>
+            <label class="float-label absolute left-0 top-2 text-ink/50 text-sm pointer-events-none uppercase font-mono">Message</label>
+          </div>
 
-        <footer class="footer">
-            <div class="footer-bg">
-                <div class="footer-container container grid">
-                    <div>
-                        <h1 class="footer-title">Aindrik</h1>
-                        <span class="footer-subtitle">Python Developer</span>
-                    </div>
+          <button type="submit" class="w-full inline-flex items-center justify-center gap-2 bg-ink text-paper font-semibold px-6 py-3.5 hover:bg-mustard hover:text-ink transition-colors uppercase font-mono text-sm">
+            Send message <i class="uil uil-navigator"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
 
-                    <ul class="footer-links">
-                        <li>
-                            <a href="#services" class="footer-links">Services</a>
-                        </li>
-                        <li>
-                            <a href="#work" class="footer-links">Work</a>
-                        </li>
-                        <li>
-                            <a href="#contact" class="footer-links">Contact</a>
-                        </li>
-                    </ul>
+  <!-- ================= FOOTER ================= -->
+  <footer class="px-6 sm:px-10 lg:px-16 py-10 border-t-2 border-ink bg-ink text-paper">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="font-mono text-xs text-paper/60">&copy; 2026 <a href="https://github.com/iamaindrik" class="hover:text-mustard">Aindrik Sarkar</a>. All rights reserved.</p>
+      <div class="flex items-center gap-5">
+        <a href="https://www.github.com/iamaindrik" target="_blank" class="hover:text-mustard transition-colors"><i class="uil uil-github"></i></a>
+        <a href="https://www.linkedin.com/in/aindriksarkar/" target="_blank" class="hover:text-mustard transition-colors"><i class="uil uil-linkedin"></i></a>
+        <a href="https://www.instagram.com/aindrik.in" target="_blank" class="hover:text-mustard transition-colors"><i class="uil uil-instagram"></i></a>
+        <a href="https://www.x.com/tw_aindrik" target="_blank" class="hover:text-mustard transition-colors"><i class="uil uil-twitter"></i></a>
+      </div>
+    </div>
+  </footer>
 
-                    <div class="footer-socials">
-                        <a href="https://www.linkedin.com//in/aindriksarkar/" target="_blank" class="footer-social">
-                            <i class="uil uil-linkedin"></i>
-                        </a>
+</main>
 
-                        <a href="https://www.instagram.com/aindrik.in" target="_blank" class="footer-social">
-                            <i class="uil uil-instagram"></i>
-                        </a>
+<script>
+/* ============================================================
+   Aindrik Sarkar — Portfolio interactions (inline, no external JS file)
+   Vanilla JS, IntersectionObserver-driven
+   ============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
 
-                        <a href="https://www.x.com/tw_aindrik" target="_blank" class="footer-social">
-                            <i class="uil uil-twitter"></i>
-                        </a>
-                    </div>
-                </div>
+  /* ---------- Sidebar (mobile drawer) ---------- */
+  const sidebar   = document.getElementById('sidebar');
+  const overlay   = document.getElementById('sidebar-overlay');
+  const navToggle = document.getElementById('nav-toggle');
+  const navClose  = document.getElementById('nav-close');
 
-                <p class="footer-copy">&#169; <a href="https://github.com/iamaindrik">Aindrik Sarkar</a>. All rights reserved</p>
-            </div>
-        </footer>
-    </main>
+  const openSidebar = () => { sidebar.classList.remove('-left-full'); sidebar.classList.add('left-0'); overlay.classList.remove('hidden'); };
+  const closeSidebar = () => { sidebar.classList.add('-left-full'); sidebar.classList.remove('left-0'); overlay.classList.add('hidden'); };
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mixitup/3.3.1/mixitup.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="style.js"></script>
+  navToggle && navToggle.addEventListener('click', openSidebar);
+  navClose && navClose.addEventListener('click', closeSidebar);
+  overlay && overlay.addEventListener('click', closeSidebar);
+  document.querySelectorAll('.nav-link').forEach(link => link.addEventListener('click', closeSidebar));
+
+  /* ---------- Scroll-spy active nav link ---------- */
+  const sections = document.querySelectorAll('main section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  const spyObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        navLinks.forEach(l => l.classList.remove('active'));
+        const match = document.querySelector(`.nav-link[data-section="${id}"]`);
+        if (match) match.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+  sections.forEach(sec => spyObserver.observe(sec));
+
+  /* ---------- Reveal-on-scroll ---------- */
+  const revealObserver = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.add('in'); obs.unobserve(entry.target); }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  /* ---------- Skill bar fill on view ---------- */
+  const barObserver = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const row = entry.target;
+        const val = row.dataset.value || 0;
+        const fill = row.querySelector('.bar-fill');
+        requestAnimationFrame(() => { fill.style.width = val + '%'; });
+        obs.unobserve(row);
+      }
+    });
+  }, { threshold: 0.4 });
+  document.querySelectorAll('.skill-row').forEach(row => barObserver.observe(row));
+
+  /* ---------- Skills tabs ---------- */
+  const skillTabs = document.querySelectorAll('.skills-tab');
+  const skillPanels = document.querySelectorAll('.skills-panel');
+
+  skillTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      skillTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      skillPanels.forEach(p => p.classList.add('hidden'));
+      const target = document.getElementById('panel-' + tab.dataset.target);
+      if (target) {
+        target.classList.remove('hidden');
+        target.querySelectorAll('.skill-row').forEach(row => {
+          const val = row.dataset.value || 0;
+          const fill = row.querySelector('.bar-fill');
+          fill.style.width = '0%';
+          requestAnimationFrame(() => { requestAnimationFrame(() => { fill.style.width = val + '%'; }); });
+        });
+      }
+    });
+  });
+
+  /* ---------- Work: filter (lightweight, no external lib) ---------- */
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const workCards = document.querySelectorAll('.work-card');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+
+      workCards.forEach(card => {
+        const cats = (card.dataset.cats || '').split(' ');
+        const show = filter === 'all' || cats.includes(filter);
+        if (show) {
+          card.style.display = '';
+          requestAnimationFrame(() => { card.style.opacity = '1'; });
+        } else {
+          card.style.opacity = '0';
+          setTimeout(() => { card.style.display = 'none'; }, 200);
+        }
+      });
+    });
+  });
+  workCards.forEach(card => { card.style.transition = 'opacity .2s ease'; });
+
+  /* ---------- Work case-study modal ---------- */
+  const workModal = document.getElementById('work-modal');
+  const wmTitle = document.getElementById('wm-title');
+  const wmRole  = document.getElementById('wm-role');
+  const wmDesc  = document.getElementById('wm-desc');
+  const wmTags  = document.getElementById('wm-tags');
+  const wmYear  = document.getElementById('wm-year');
+  const wmLink  = document.getElementById('wm-link');
+
+  document.querySelectorAll('.work-card').forEach(card => {
+    const openBtn = card.querySelector('.work-open');
+    openBtn && openBtn.addEventListener('click', () => {
+      wmTitle.textContent = card.dataset.title || '';
+      wmRole.textContent  = (card.dataset.role || '').toUpperCase();
+      wmDesc.textContent  = card.dataset.desc || '';
+      wmTags.textContent  = card.dataset.tags || '';
+      wmYear.textContent  = card.dataset.year || '';
+      wmLink.href = card.dataset.link || '#';
+      if (wmLink.firstChild) wmLink.firstChild.textContent = (card.dataset.linkLabel || 'View project') + ' ';
+      workModal.classList.add('open');
+    });
+  });
+  document.getElementById('work-modal-close').addEventListener('click', () => workModal.classList.remove('open'));
+  workModal.addEventListener('click', (e) => { if (e.target === workModal) workModal.classList.remove('open'); });
+
+  /* ---------- Services modal ---------- */
+  const serviceData = [
+    { title: 'AI / ML Integration', desc: 'Add intelligent features like image recognition, recommendations, or chatbots using machine learning.', items: ['Image Recognition', 'Chatbots', 'Object Detection', 'IoT & Embedded Systems Projects'] },
+    { title: 'Web Development', desc: 'I create visually stunning, responsive, and user-friendly websites that elevate your online presence.', items: ['User Interface Development', 'Web Page Development', 'Interactive UX/UI', 'Brand-aligned design systems'] },
+    { title: 'Python & Automation', desc: 'I build efficient, scalable, and automation-driven Python solutions for web, data, and AI applications.', items: ['Bot Development', 'Automation Scripts', 'Data Analysis & Visualization', 'REST API Development'] }
+  ];
+
+  const serviceModal = document.getElementById('service-modal');
+  const smTitle = document.getElementById('sm-title');
+  const smDesc  = document.getElementById('sm-desc');
+  const smList  = document.getElementById('sm-list');
+
+  document.querySelectorAll('.service-open').forEach((btn, i) => {
+    btn.addEventListener('click', () => {
+      const d = serviceData[i];
+      if (!d) return;
+      smTitle.textContent = d.title;
+      smDesc.textContent = d.desc;
+      smList.innerHTML = d.items.map(it => `<li class="flex items-center gap-2"><i class="uil uil-check-circle"></i>${it}</li>`).join('');
+      serviceModal.classList.add('open');
+    });
+  });
+  document.getElementById('service-modal-close').addEventListener('click', () => serviceModal.classList.remove('open'));
+  serviceModal.addEventListener('click', (e) => { if (e.target === serviceModal) serviceModal.classList.remove('open'); });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') { workModal.classList.remove('open'); serviceModal.classList.remove('open'); }
+  });
+
+  /* ---------- Floating labels on contact form ---------- */
+  document.querySelectorAll('.input-wrap').forEach(wrap => {
+    const field = wrap.querySelector('input, textarea');
+    if (!field) return;
+    field.addEventListener('focus', () => wrap.classList.add('focused'));
+    field.addEventListener('blur', () => { wrap.classList.remove('focused'); wrap.classList.toggle('filled', field.value.trim() !== ''); });
+  });
+
+  /* ---------- Field-log typewriter (signature hero element) ---------- */
+  const terminalEl = document.getElementById('terminal');
+  if (terminalEl) {
+    const lines = [
+      { prompt: '> whoami', out: '  Aindrik Sarkar — AI & Python Developer' },
+      { prompt: '> cat mission.txt', out: '  Building real-world ML products for AgriTech, one model at a time.' },
+      { prompt: '> run organic_pie --predict leaf_042.jpg', out: '  Diagnosis: Early Blight  |  Confidence: 97.4%' },
+      { prompt: '> ls internships/', out: '  tusker-ai/  ybi-foundation/' },
+      { prompt: '> log --last', out: '  feat: ship Organic-Pie to production' },
+      { prompt: '> echo $STATUS', out: '  Open to internships & freelance work' },
+    ];
+
+    let lineIndex = 0, charIndex = 0, typingOut = false, currentLineDiv = null;
+    const typeSpeed = 30, holdTime = 1400;
+
+    function typeStep() {
+      const current = lines[lineIndex];
+      const text = typingOut ? current.out : current.prompt;
+
+      if (!currentLineDiv) {
+        currentLineDiv = document.createElement('div');
+        currentLineDiv.className = 'mb-3';
+        const span = document.createElement('span');
+        span.className = typingOut ? 'text-paper/70' : 'text-mustard';
+        currentLineDiv.appendChild(span);
+        terminalEl.appendChild(currentLineDiv);
+      }
+
+      const span = currentLineDiv.querySelector('span');
+      span.textContent = text.slice(0, charIndex + 1);
+      charIndex++;
+
+      if (charIndex < text.length) {
+        setTimeout(typeStep, typeSpeed);
+      } else if (!typingOut) {
+        typingOut = true; charIndex = 0; currentLineDiv = null;
+        setTimeout(typeStep, 250);
+      } else {
+        const cursor = document.createElement('span');
+        cursor.className = 'cursor';
+        currentLineDiv.appendChild(cursor);
+
+        lineIndex = (lineIndex + 1) % lines.length;
+        typingOut = false; charIndex = 0; currentLineDiv = null;
+
+        setTimeout(() => {
+          if (terminalEl.children.length > 5) terminalEl.removeChild(terminalEl.firstChild);
+          typeStep();
+        }, holdTime);
+      }
+    }
+    typeStep();
+  }
+
+});
+</script>
 </body>
 </html>
-
